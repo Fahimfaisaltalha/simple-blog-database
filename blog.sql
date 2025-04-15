@@ -12,7 +12,7 @@ CREATE TABLE users(
 
 );
 
---Posts Table
+-- Posts Table
 
 CREATE TABLE posts(
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -35,3 +35,22 @@ CREATE TABLE comments(
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+-- Insert Data ito users
+INSERT INTO users(email,password) VALUES ('talha@gmail.com','talha');
+
+-- Insert Data ito posts
+INSERT INTO posts(title,content,user_id) VALUES ('My First Post','My First Post Content',1);
+
+-- Insert  data into comments
+INSERT INTO comments(comment, user_id, post_id) VALUES ('This is my comment on the first post.', 1, 1);
+
+
+SELECT user.id AS UserID, user.email AS UserEmail,
+       post.id AS PostID, post.title As PostTitle,
+       comment.id AS COmment.id comment.comment as COMMENT
+
+FROM users AS user
+JOIN posts AS post ON user.id = post.user_id
+JOIN comments AS comment ON post.id = comment.post_id
+WHERE comment.user_id= user.id;
